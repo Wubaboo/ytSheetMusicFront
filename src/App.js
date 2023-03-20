@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import InputRow from "./components/inputRow";
 import backendServices from "./services/backendServices";
+import Output from "./components/output";
 
 function App() {
   const [url, setURL] = useState("");
@@ -23,9 +24,11 @@ function App() {
       return;
     }
     backendServices.postToMain(url, hands, threshold).then((res) => {
-      console.log(res);
       setRes(JSON.parse(res).filename);
       setLoading(false);
+      setURL("");
+      setThreshold(90);
+      setHands(false);
     });
   }
 
@@ -44,8 +47,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1 className="header-title">ytSheetMusic</h1>
-        <p className="header-description">
-          Get PDFs of sheet music from YouTube videos
+        <p className="header-description" style={{ marginLeft: "1em" }}>
+          {"Get PDFs of sheet music from YouTube videos"}
         </p>
       </header>
       <main className="main-content">
@@ -68,17 +71,8 @@ function App() {
             </p>
           </>
         ) : null}
-        {res ? (
-          <div>
-            <p>Get your PDF:</p>
-            <a
-              className="res-link"
-              href={`https://ytsheetmusic.s3.amazonaws.com/${res}/${res}.pdf`}
-            >
-              {JSON.stringify(res)}.pdf
-            </a>
-          </div>
-        ) : null}
+
+        {res ? <Output res={res} /> : null}
       </main>
       <footer className="App-footer">
         <a

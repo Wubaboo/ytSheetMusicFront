@@ -1,0 +1,13 @@
+.error {
+  background-color: rgb(193, 74, 74);
+  border-radius: 36px;
+  width: 60%;
+  height: 4vh;
+  font-size: 125%;
+  color: white;
+  text-align: center;
+  vertical-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

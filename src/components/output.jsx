@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import { isCompositeComponent } from "react-dom/test-utils";
 import backendServices from "../services/backendServices";
 import Modal from "@mui/material/Modal";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import IconButton from "@mui/material/IconButton";
-import { Icon } from "@mui/material";
-import { Box } from "@mui/system";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import "../styles/output.css";
 
 export default function Result(props) {
   const [images, setImages] = useState([]);
@@ -15,6 +13,10 @@ export default function Result(props) {
   const [showModal, setShowModal] = useState(false);
   const [selectedImages, setSelectedImages] = useState(new Set());
   const [loading, setLoading] = useState(false);
+  const [resFile, setResFile] = useState(props.res + ".pdf");
+  const [fileLink, setFileLink] = useState(
+    backendServices.getFile(props.res, props.res + ".pdf")
+  );
   const { res } = props;
   useEffect(() => {
     async function callGetImages() {
@@ -62,9 +64,11 @@ export default function Result(props) {
     if (selectedImages.length < 1) return;
     const imageList = [...selectedImages];
     imageList.sort();
-    backendServices.combineSelected(res, imageList).then((res) => {
+    backendServices.combineSelected(res, imageList).then((result) => {
+      const resultObj = JSON.parse(result);
+      setResFile(resultObj.filename);
+      setFileLink(backendServices.getFile(res, resultObj.filename));
       setLoading(false);
-      console.log(res);
     });
   }
 
@@ -81,7 +85,7 @@ export default function Result(props) {
                       (selectedImages.has(file) ? " selected-image" : "")
                     }
                     alt={file}
-                    src={backendServices.getImageLink(res, file)}
+                    src={backendServices.getFile(res, file)}
                     onClick={() => {
                       handleImageClick(file);
                     }}
@@ -108,15 +112,15 @@ export default function Result(props) {
         </div>
         <div className="result-pdf">
           <p>Get your PDF:</p>
-          <a className="res-link" href={backendServices.getPDFLink(res)}>
-            {res}.pdf
+          <a className="res-link" href={fileLink}>
+            {resFile}
           </a>
         </div>
       </div>
 
       <Modal open={showModal} onClose={handleClose}>
-        <Box
-          sx={{
+        <div
+          style={{
             position: "absolute",
             top: "50%",
             left: "50%",
@@ -131,15 +135,16 @@ export default function Result(props) {
           </IconButton>
           <img
             className={
-              selectedImages.has(images[modalImage]) ? "selected-image" : ""
+              "modal-image" +
+              (selectedImages.has(images[modalImage]) ? " selected-image" : "")
             }
-            src={backendServices.getImageLink(res, images[modalImage])}
+            src={backendServices.getFile(res, images[modalImage])}
             onClick={() => handleImageClick(images[modalImage])}
           ></img>
           <IconButton onClick={handleNavRight}>
             <KeyboardArrowRightIcon sx={{ width: "10vh", height: "10vh" }} />
           </IconButton>
-        </Box>
+        </div>
       </Modal>
 
       {loading ? (

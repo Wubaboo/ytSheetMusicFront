@@ -1,5 +1,20 @@
 import Error from "./error";
+import "../styles/inputRow.css";
+import { Tooltip } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
 
+const thresholdTooltipText = (
+  <>
+    <p style={{ fontSize: "1.2em", fontWeight: "lighter" }}>
+      This threshold determines how similar two frames are. Frames that have a
+      Structural Similarity Index (SSIM) above this threshold are discarded. If
+      you are missing sheet music portions, lowering this threshold might help.
+      A threshold of 90 usually works just fine.
+    </p>
+  </>
+);
+
+const handsTooltipText = "";
 export default function InputRow(props) {
   const {
     onSubmit,
@@ -27,7 +42,15 @@ export default function InputRow(props) {
           ></input>
           <div className="threshold-row">
             <label htmlFor="threshold">
-              Frame Similarity Threshold (default 90):
+              <Tooltip
+                title={thresholdTooltipText}
+                arrow
+                TransitionComponent={Zoom}
+              >
+                <div className="hover-text">
+                  Frame Similarity Threshold (default 90):
+                </div>
+              </Tooltip>
             </label>
             <input
               id="threshold"
@@ -47,7 +70,7 @@ export default function InputRow(props) {
             />
           </div>
           <div className="hands-row">
-            <label htmlFor="hands">
+            <label htmlFor="hands" className="hover-text">
               Are there hands (or non sheet music elements) in the YouTube
               Video?
             </label>

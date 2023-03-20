@@ -58,20 +58,15 @@ async function getImages(bucket) {
   return result;
 }
 
-function getImageLink(bucket, file) {
+function getFile(bucket, file) {
   return `https://ytsheetmusic.s3.ca-central-1.amazonaws.com/${bucket}/${file}`;
-}
-
-function getPDFLink(bucket) {
-  return `https://ytsheetmusic.s3.ca-central-1.amazonaws.com/${bucket}/${bucket}.pdf`;
 }
 
 const methods = {
   postToMain,
   getMain,
   getImages,
-  getImageLink,
-  getPDFLink,
+  getFile,
   combineSelected,
 };
 export default methods;

@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ytSheetMusicFront/static/css/main.33740e9a.css",
+    "main.js": "/ytSheetMusicFront/static/js/main.6d9ceaf4.js",
+    "index.html": "/ytSheetMusicFront/index.html",
+    "main.33740e9a.css.map": "/ytSheetMusicFront/static/css/main.33740e9a.css.map",
+    "main.6d9ceaf4.js.map": "/ytSheetMusicFront/static/js/main.6d9ceaf4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.33740e9a.css",
+    "static/js/main.6d9ceaf4.js"
+  ]
+}

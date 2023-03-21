@@ -28,6 +28,7 @@ const handsTooltipText = (
         <img
           src={process.env.PUBLIC_URL + "/assets/noHands.png"}
           style={{ width: "32vw" }}
+          alt="YouTube video with only sheet music elements"
         ></img>
       </div>
 
@@ -38,6 +39,7 @@ const handsTooltipText = (
         <img
           src={process.env.PUBLIC_URL + "/assets/withHands.png"}
           style={{ width: "32vw" }}
+          alt="YouTube video with non sheet music elements"
         ></img>
       </div>
     </div>

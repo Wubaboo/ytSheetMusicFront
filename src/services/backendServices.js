@@ -1,7 +1,14 @@
 const baseURL = process.env.REACT_APP_BACKEND_URL;
+// const baseURL =
+//   "https://ec2-3-144-227-136.us-east-2.compute.amazonaws.com:8080/";
 
 async function getMain(url) {
-  const res = await fetch(baseURL);
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+  const res = await fetch(baseURL, requestOptions);
+  console.log(res);
   const data = await res.text();
   console.log("result", data);
   return data;

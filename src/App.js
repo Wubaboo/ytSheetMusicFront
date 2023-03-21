@@ -11,12 +11,11 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [validUrl, setValidUrl] = useState(true);
   const [res, setRes] = useState("");
-  // console.log(process.env.NODE_ENV, process.env.REACT_APP_BACKEND_URL);
+
   useEffect(() => {
     const check = url.startsWith("https://www.youtube.com/watch?v=");
     setValidUrl(check);
   }, [url]);
-
   async function handleClick(e) {
     setLoading(true);
     e.preventDefault();

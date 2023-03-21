@@ -140,6 +140,7 @@ export default function Result(props) {
             }
             src={backendServices.getFile(res, images[modalImage])}
             onClick={() => handleImageClick(images[modalImage])}
+            alt={images[modalImage]}
           ></img>
           <IconButton onClick={handleNavRight}>
             <KeyboardArrowRightIcon sx={{ width: "10vh", height: "10vh" }} />

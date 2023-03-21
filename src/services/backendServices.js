@@ -1,6 +1,6 @@
-const baseURL = process.env.REACT_APP_BACKEND_URL;
-// const baseURL =
-//   "https://ec2-3-144-227-136.us-east-2.compute.amazonaws.com:8080/";
+// const baseURL = process.env.REACT_APP_BACKEND_URL;
+const baseURL =
+  "https://ec2-3-144-227-136.us-east-2.compute.amazonaws.com:8080/";
 
 async function getMain(url) {
   const requestOptions = {

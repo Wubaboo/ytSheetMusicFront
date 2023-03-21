@@ -59,3 +59,9 @@
   text-underline-offset: 0.25em;
   cursor: pointer;
 }
+
+.tooltip-images {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+}

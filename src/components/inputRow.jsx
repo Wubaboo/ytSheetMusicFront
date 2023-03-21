@@ -14,7 +14,35 @@ const thresholdTooltipText = (
   </>
 );
 
-const handsTooltipText = "";
+const handsTooltipText = (
+  <>
+    <p style={{ fontSize: "1.2em", fontWeight: "lighter" }}>
+      Check this box if there are non-sheet-music elements in the video
+    </p>
+    <br></br>
+    <div className="tooltip-images">
+      <div className="tooltip-image">
+        <figcaption style={{ fontSize: "1.2em", fontWeight: "lighter" }}>
+          Don't check the box
+        </figcaption>
+        <img
+          src={process.env.PUBLIC_URL + "/assets/noHands.png"}
+          style={{ width: "32vw" }}
+        ></img>
+      </div>
+
+      <div className="tooltip-image">
+        <figcaption style={{ fontSize: "1.2em", fontWeight: "lighter" }}>
+          Check the box
+        </figcaption>
+        <img
+          src={process.env.PUBLIC_URL + "/assets/withHands.png"}
+          style={{ width: "32vw" }}
+        ></img>
+      </div>
+    </div>
+  </>
+);
 export default function InputRow(props) {
   const {
     onSubmit,
@@ -70,10 +98,25 @@ export default function InputRow(props) {
             />
           </div>
           <div className="hands-row">
-            <label htmlFor="hands" className="hover-text">
-              Are there hands (or non sheet music elements) in the YouTube
-              Video?
+            <label htmlFor="hands">
+              <Tooltip
+                title={handsTooltipText}
+                arrow
+                TransitionComponent={Zoom}
+                componentsProps={{
+                  tooltip: {
+                    sx: {
+                      maxWidth: "80vw",
+                    },
+                  },
+                }}
+              >
+                <div className="hover-text">
+                  Are there non sheet music elements in the YouTube Video?
+                </div>
+              </Tooltip>
             </label>
+
             <input
               id="hands"
               type="checkbox"

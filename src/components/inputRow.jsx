@@ -76,7 +76,7 @@ export default function InputRow(props) {
                 TransitionComponent={Zoom}
               >
                 <div className="hover-text">
-                  Frame Similarity Threshold (default 90):
+                  Frame Similarity Threshold (0 &le; x &le; 100) (default 90):
                 </div>
               </Tooltip>
             </label>
@@ -133,6 +133,12 @@ export default function InputRow(props) {
           className="button"
           onClick={(e) => onSubmit(e)}
           value="Get Sheet Music"
+          disabled={!valid || threshold < 1 || threshold > 100}
+          style={
+            !valid || threshold < 1 || threshold > 100
+              ? { backgroundColor: "grey", cursor: "default" }
+              : {}
+          }
         />
       </form>
       {url && !valid ? (

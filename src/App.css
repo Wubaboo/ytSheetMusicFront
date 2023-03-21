@@ -37,6 +37,7 @@
 
 .main-content {
   height: 83vh;
+  max-height: 83vh;
   flex-direction: column;
   display: flex;
   justify-content: flex-start;

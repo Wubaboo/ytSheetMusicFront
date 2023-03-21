@@ -27,6 +27,8 @@ export default function Result(props) {
       setImages(imageList);
       setSelectedImages(new Set(imageList));
     }
+    setImages([]);
+    setSelectedImages(new Set());
     callGetImages();
   }, [res]);
 

@@ -3,6 +3,7 @@ import "./App.css";
 import InputRow from "./components/inputRow";
 import backendServices from "./services/backendServices";
 import Output from "./components/output";
+import Error from "./components/error";
 
 function App() {
   const [url, setURL] = useState("");
@@ -11,24 +12,34 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [validUrl, setValidUrl] = useState(true);
   const [res, setRes] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const check = url.startsWith("https://www.youtube.com/watch?v=");
     setValidUrl(check);
   }, [url]);
+
   async function handleClick(e) {
     setLoading(true);
+    setRes("");
     e.preventDefault();
     if (!validUrl || threshold < 1 || threshold > 100) {
       return;
     }
-    backendServices.postToMain(url, hands, threshold).then((res) => {
-      setRes(JSON.parse(res).filename);
-      setLoading(false);
-      setURL("");
-      setThreshold(90);
-      setHands(false);
-    });
+    backendServices
+      .postToMain(url, hands, threshold)
+      .then((res) => {
+        setRes(JSON.parse(res).filename);
+        setLoading(false);
+        setURL("");
+        setThreshold(90);
+        setHands(false);
+        setError(false);
+      })
+      .catch((e) => {
+        setLoading(false);
+        setError(true);
+      });
   }
 
   function handleSearchChange(e) {
@@ -70,7 +81,7 @@ function App() {
             </p>
           </>
         ) : null}
-
+        {error ? <Error>Sorry :( Something went wrong</Error> : null}
         {res ? <Output res={res} /> : null}
       </main>
       <footer className="App-footer">

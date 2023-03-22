@@ -36,7 +36,7 @@
 }
 
 .main-content {
-  height: 82vh;
+  height: 83vh;
   max-height: 83vh;
   flex-direction: column;
   display: flex;
@@ -97,5 +97,9 @@
     display: flex;
     font-size: medium;
     height: 8vh;
+  }
+
+  .main-content {
+    height: 82vh;
   }
 }

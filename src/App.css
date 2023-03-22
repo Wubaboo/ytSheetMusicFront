@@ -36,7 +36,7 @@
 }
 
 .main-content {
-  height: 83vh;
+  height: 82vh;
   max-height: 83vh;
   flex-direction: column;
   display: flex;
@@ -81,10 +81,21 @@
 
 @media (max-width: 800px) {
   .App-header {
-    line-height: 2em;
+    line-height: 1.5em;
     padding: 1em 2em;
+    height: 10vh;
   }
   .App-header > * {
     display: block;
+  }
+
+  .App-header > p {
+    font-size: smaller;
+  }
+
+  .App-footer {
+    display: flex;
+    font-size: medium;
+    height: 8vh;
   }
 }
